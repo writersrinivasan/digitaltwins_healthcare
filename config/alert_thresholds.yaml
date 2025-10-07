@@ -1,0 +1,132 @@
+# Alert Thresholds Configuration
+
+# Normal vital sign ranges for adults
+normal_ranges:
+  heart_rate:
+    min: 60
+    max: 100
+    unit: "bpm"
+  
+  systolic_bp:
+    min: 90
+    max: 140
+    unit: "mmHg"
+  
+  diastolic_bp:
+    min: 60
+    max: 90
+    unit: "mmHg"
+  
+  oxygen_saturation:
+    min: 95
+    max: 100
+    unit: "%"
+  
+  temperature:
+    min: 36.1
+    max: 37.2
+    unit: "°C"
+  
+  respiratory_rate:
+    min: 12
+    max: 20
+    unit: "breaths/min"
+
+# Critical thresholds (immediate intervention required)
+critical_thresholds:
+  heart_rate:
+    min: 40
+    max: 150
+  
+  systolic_bp:
+    min: 70
+    max: 180
+  
+  diastolic_bp:
+    min: 40
+    max: 110
+  
+  oxygen_saturation:
+    min: 88
+    max: 100
+  
+  temperature:
+    min: 35.0
+    max: 39.0
+
+# Age-specific adjustments
+age_adjustments:
+  elderly: # 65+ years
+    systolic_bp:
+      max: 150  # Higher tolerance
+    heart_rate:
+      min: 55   # Lower acceptable limit
+  
+  pediatric: # Under 18
+    heart_rate:
+      min: 70
+      max: 120
+    respiratory_rate:
+      min: 15
+      max: 25
+
+# Condition-specific adjustments
+condition_adjustments:
+  hypertension:
+    systolic_bp:
+      max: 160
+    diastolic_bp:
+      max: 100
+  
+  heart_disease:
+    heart_rate:
+      max: 120  # Lower threshold for tachycardia
+  
+  copd:
+    oxygen_saturation:
+      min: 88   # Lower acceptable SpO2
+  
+  diabetes:
+    glucose_level:
+      min: 70
+      max: 180  # mg/dL
+
+# Alert severity levels
+severity_levels:
+  critical:
+    color: "#FF4444"
+    priority: 1
+    escalation_time: 5  # minutes
+    
+  high:
+    color: "#FF8800" 
+    priority: 2
+    escalation_time: 15
+    
+  medium:
+    color: "#FFCC00"
+    priority: 3
+    escalation_time: 30
+    
+  low:
+    color: "#88CC00"
+    priority: 4
+    escalation_time: 60
+
+# Notification settings
+notifications:
+  critical:
+    - dashboard_alert
+    - audio_alarm
+    - email_notification
+    - sms_alert
+  
+  high:
+    - dashboard_alert
+    - email_notification
+  
+  medium:
+    - dashboard_alert
+  
+  low:
+    - dashboard_notification
